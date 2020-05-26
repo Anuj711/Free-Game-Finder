@@ -10,35 +10,39 @@ def main():
                          password="$15@Anuj",
                          user_agent="Scraping",
                          username="warrior21q")
-    free_Games = reddit.subreddit("FreeGameFindings").new(limit=5)
+    free_Games = reddit.subreddit("FreeGameFindings").new(limit=17)
 
     # Message we are trying to send
     message = ""
-    mainGames = {}
     mainGames2 = []
+    mainGamesDate = []
     mainGamesCounter = 0
 
     # Iterates through each post in the free games subreddit
     for post in free_Games:
         title = post.title
-        #.encode('utf-8')
         print(title)
         date = int(post.created_utc)
-        convertedDate = datetime.datetime.utcfromtimestamp(date)
-        if "GOG" in post.title or "Epic" in post.title or "Humble" in post.title or "Uplay" in post.title or "UPLAY" in post.title or "uplay" in post.title:
+        convertedDate = str(datetime.datetime.utcfromtimestamp(date))
+        if "GOG" in post.title or "Epic" in post.title or "Humble" in post.title or "Uplay" in post.title or "UPLAY" in post.title or "uplay" in post.title or "PS4" in post.title:
             mainGamesCounter += 1
             mainGames2.append(title)
-            # message += str(title)
+            mainGamesDate.append(convertedDate)
         print(convertedDate, '\n')
 
+    dateListCounter = 0
     message+=("\nMAIN SITES THAT I CHECK")
     if mainGamesCounter == 0:
-        message += ("\nNo games from main sites")
+        message += ("\nNo games from our main sites this week.")
     else:
-        message += ("\nGames are from main sites")
+        message += ("\nGames for this week:")
         for game in mainGames2:
             message += ('\n')
+            message += ('-')
             message += game
+            message += " : "
+            message += mainGamesDate[dateListCounter]
+            dateListCounter += 1
         message.encode('utf-8')
 
     print(message)
@@ -54,7 +58,6 @@ def main():
         server.starttls(context=context)
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, message)
-
 
 if __name__ == '__main__':
     main()
