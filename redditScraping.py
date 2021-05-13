@@ -47,7 +47,7 @@ def main():
     smtp_server = "smtp.gmail.com"
     sender_email = "anujshukla01@gmail.com"
     receiver_email = "anujshukla01@gmail.com", "shukla_animesh@hotmail.com"
-    password = "$19@Anuj"
+    password = "LoiterSquad@27"
 
     context = ssl.create_default_context()
     with smtplib.SMTP(smtp_server, port) as server:
