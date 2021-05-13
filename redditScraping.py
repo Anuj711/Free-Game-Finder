@@ -7,7 +7,7 @@ from email.message import EmailMessage
 def main():
     reddit = praw.Reddit(client_id="EX7gKNMra7fgpg",
                          client_secret="-zWRsNlfw6wlSJS-t0pOnV1VPhQ",
-                         password="$15@Anuj",
+                         password="LoiterSquad@27",
                          user_agent="Scraping",
                          username="warrior21q")
     free_Games = reddit.subreddit("FreeGameFindings").new(limit=7)
